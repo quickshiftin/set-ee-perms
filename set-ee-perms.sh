@@ -15,12 +15,10 @@ if [ "$1" -eq "-h" ]; then
     exit 0
 fi
 
-# assume current working dirctory by default
-# but first cli argument can set a specific directory
-dir=.
-if [ -n "$1" ] && [ -d "$1" ]; then 
-    dir=$1
-elif [ -n "$1" ]; then
+# First cli argument indicates directory to operate on
+# it is the root of the EE installation
+dir=$1
+if [ ! -d "$1" ]; then 
     echo Directory $1 doesn\'t exist
     exit
 fi
