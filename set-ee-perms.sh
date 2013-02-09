@@ -10,7 +10,7 @@
 # script first, then do the move.
 
 # Usage function if first arg is -h
-if [ "$1" -eq "-h" ]; then
+if [ "$1" = -h ] || [ $# -lt 3 ]; then
     echo 'set-ee-perms.sh <ee-directory> <user> [group]'
     exit 0
 fi
