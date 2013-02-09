@@ -41,7 +41,9 @@ if [ ! -d $CONFIG_DIR ]; then
 fi
 
 # Only issue a warning if the images directory isn't found
+found_images=1
 if [ ! -d $IMG_DIR ]; then
+    found_images=0
     echo Warning: $IMG_DIR does not exist.
 fi
 
@@ -71,17 +73,23 @@ echo "find $dir -type f -exec chmod 644 '{}' ';'"
 find $dir -type f -exec chmod 644 '{}' ';'
 
 ## Now set permissions per EE docs
+# Always operate on the cache directory
+echo "chmod -R 777 $EE_DIR/cache/" 
+chmod -R 777 $EE_DIR/cache/ 
 
-declare -a wide_open_dirs=( \
-            "$EE_DIR/cache/" "$IMG_DIR/avatars/uploads/" "$IMG_DIR/captchas/" \
-            "$IMG_DIR/member_photos/" "$IMG_DIR/pm_attachments/" \
-            "$IMG_DIR/signature_attachments/" "$IMG_DIR/uploads/" \
-            );
-for dir in "${wide_open_dirs[@]}"
-do
-    echo "chmod -R 777 $dir"
-    chmod -R 777 "$dir"
-done
+# Only opearate on the images directory if it's out there
+if [ $found_images -gt 0 ]; then
+    declare -a wide_open_dirs=( \
+                "$IMG_DIR/avatars/uploads/" "$IMG_DIR/captchas/" \
+                "$IMG_DIR/member_photos/" "$IMG_DIR/pm_attachments/" \
+                "$IMG_DIR/signature_attachments/" "$IMG_DIR/uploads/" \
+                );
+    for dir in "${wide_open_dirs[@]}"
+    do
+        echo "chmod -R 777 $dir"
+        chmod -R 777 "$dir"
+    done
+fi
 
 echo "chmod 666 $CONFIG_DIR/config.php"
 chmod 666 $CONFIG_DIR/config.php
