@@ -24,7 +24,7 @@ if [ ! -d "$1" ]; then
 fi
 
 ## Known relative sub-directories from base directory
-## These are base on system directory not being moved out
+## These are based on system directory not being moved out
 EE_DIR="$dir/system/expressionengine"
 CONFIG_DIR="$dir/system/expressionengine/config"
 IMG_DIR="$dir/images"
@@ -55,11 +55,11 @@ if [ -n "$3" ]; then
     group=$3
 fi
 
-## make sure it's ok to proceed
+## make sure it's alright to proceed
 echo "We're about to set perms on $dir"
 echo "Specifically, we'll set the standard EE perms"
 echo "and change ownership to $user:$group"
-echo Type Ctrl+C to abort or Enter to continue
+echo 'Type Ctrl+C to abort or Enter to continue'
 read
 
 ## set all files to owned by $user:group
