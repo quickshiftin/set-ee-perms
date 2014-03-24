@@ -6,9 +6,9 @@ This is a simple BASH script to automate the process described by the
 This script makes all the pain go away!!
 
 All you have to do is download the script, then set it to executable
-
-`chmod u+x set-ee-perms.sh`
-
+```bash
+chmod u+x set-ee-perms.sh
+```
 From there, you're ready to use the script on any freshly unpacked EE installation.
 
 Using the script is simple.  The first argument specifies the root of the EE installation.
@@ -24,13 +24,14 @@ Examples
 --------
 
 Assume _set-ee-perms.sh_ is in your home directory & the working directory is the EE installation directory.
-
-`~/set-ee-perms.sh . apache # Set ownership to apache:apache`
-
+```bash
+~/set-ee-perms.sh . apache # Set ownership to apache:apache
+```
 Assume the group is going to be different
-
-`~/set-ee-perms.sh . apache root # Set ownership to apache:root`
-
+```bash
+~/set-ee-perms.sh . apache root # Set ownership to apache:root
+```
 Assume the current directory is not the EE root & the EE root is in _/var/www/my-ee-site_
-
-`~/set-ee-perms.sh /var/www/my-ee-site apache`
+```bash
+~/set-ee-perms.sh /var/www/my-ee-site apache
+```
